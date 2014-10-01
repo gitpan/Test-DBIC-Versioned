@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use 5.016;
 
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 =head1 NAME
 
@@ -12,7 +12,7 @@ Test::DBIC::Versioned:MySQL - Subclass with specific methods for MySQL
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =cut
 
@@ -92,15 +92,23 @@ sub _build_test_db {
     return $mysqld;
 }
 
-# Moose destructor.
-# So that the test_db is cleanly stopped when it goes out of scope to
-# avoid filling RAM and disc with unused databases.
+=head1 METHODS
+
+=head2 DEMOLISH
+
+The L<< Moose >> destructor. This is defined so that the test_db is cleanly stopped
+when it goes out of scope, and to avoid filling RAM and disc with unused
+databases.
+
+Moose will call this automaticaly. It should not be called by users of this
+class.
+
+=cut
+
 sub DEMOLISH {    ## no critic (RequireFinalReturn)
     my $self = shift;
     $self->test_db->stop();
 }
-
-=head1 METHODS
 
 =head2 run_sql
 

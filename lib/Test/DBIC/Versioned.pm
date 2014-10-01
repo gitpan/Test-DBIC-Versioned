@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use 5.016;
 
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 =head1 NAME
 
@@ -12,7 +12,7 @@ Test::DBIC::Versioned - Test upgrade scripts for L<< DBIx::Class::Schema::Versio
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -121,5 +121,13 @@ has _json_engine => (
     isa     => 'JSON',
     default => sub { return JSON->new->pretty(1) }
 );
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (C) 2014 "spudsoup"
+
+This program is released under the Artistic License version 2.0
+
+=cut
 
 1;
